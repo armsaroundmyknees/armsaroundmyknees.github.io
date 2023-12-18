@@ -1,0 +1,29 @@
+:root {
+    --light-background: white;
+    --light-background-text: #1b1b1b;
+    --border-color: #8f8f8f33; 
+    --accent-color: #5aada6;
+    --accent-color-danger: #d65858;
+    --no-color: #ffffff00;
+  }
+
+  
+  ::selection {
+    color: var(--accent-color);
+    background: var(--no-color);
+  }  
+
+* {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* border: 1px dotted silver; */
+}
+
+.layout-container {
+    grid-template-areas: 
+    "header header header"
+    "title content content"
+    ;
+}
