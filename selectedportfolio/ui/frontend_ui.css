@@ -21,9 +21,135 @@
     /* border: 1px dotted silver; */
 }
 
+
+
+
+body {
+  
+}
+
+/* layout container */
 .layout-container {
-    grid-template-areas: 
-    "header header header"
-    "title content content"
-    ;
+    background-color: white;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* header container */
+.header {
+  background-color: rgba(148, 148, 185, 0);
+  border: 1px solid black;
+  padding: 1vh 2vh;
+  height: 5vh;
+  width: 100%;
+  position: fixed;
+  top:0;
+  right:0;
+}
+
+/* content container */
+.contents {
+  background-color: var(--no-color);
+  height: 91vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  overflow-x: hidden;
+  /* overflow-x: scroll; */
+  gap: 2vh;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+.content-wrap {
+  flex: 1 0 auto;
+  background-color: var(--no-color);
+  display: grid;
+  grid-template-areas:
+  "contentA"
+  "contentB";
+  width: 100%;
+  height: 100%;
+  grid-template-columns: 100vw;
+  grid-template-rows: 1fr 1fr;
+  scroll-snap-align: center;
+}
+
+.content-A, .content-B {
+border: 2px solid var(--border-color);
+background-color: aliceblue;
+
+}
+
+.content-A {
+margin-top: 5vh;
+grid-area: contentA;
+}
+
+.content-B {
+grid-area: contentB;
+}
+
+
+/* button container */
+.buttons-container {
+background-color: rgba(255, 255, 255, 0.24);
+border: 1px solid var(--border-color);
+height: 9%;
+width: 100vw;
+position: fixed;
+bottom:0;
+right: 0;
+z-index: 10;
+padding: 1vh 1vh;
+}
+
+@media screen and (min-width: 768px) {
+
+  .header {
+    padding: 1vh 4vh;
+  }
+
+  .contents {
+    width: 100vw;
+    padding: 6vh 4vh;
+    height: 100vh;
+
+  }
+
+  .content-wrap {
+    height: 100%;
+    grid-template-areas:
+    "contentA contentB";
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    margin-top: unset;
+
+  }
+
+  .content-A {
+    margin-top: unset;
+    grid-area: contentA;
+    }
+
+  .buttons-container {
+    height: 100%;
+    width: 5%;
+    bottom:unset;
+    top:0;
+    z-index: 10;
+    padding: 1vh 1vh;
+    }
+
+}
+
+
+/* all layout */
+
+.single-content {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
 }

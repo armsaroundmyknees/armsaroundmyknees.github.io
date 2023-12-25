@@ -1,0 +1,30 @@
+{
+    "settings": 
+    {
+        "fullImgPostfix": "full"
+    },
+    "contents": [
+    {
+        "title": "cover",
+        "single": true,
+        "sideA": "<em>welcome..</em>"
+    },
+    {
+        "title": "intro",
+        "single": false,
+        "sideA": "hi..",
+        "sideB": "ok :>"
+    },
+    {
+        "title": "project 1",
+        "single": true,
+        "sideA": "cover project 1"
+    },
+    {
+        "title": "project 1",
+        "single": false,
+        "sideA": "project",
+        "sideB": "ok :>"
+    }        
+    ]
+}
