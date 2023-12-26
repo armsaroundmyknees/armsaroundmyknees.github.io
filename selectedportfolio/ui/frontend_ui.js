@@ -1,7 +1,10 @@
-// layout variables
+/**************** layout variables ****************/
 const container_contents = document.querySelector("main.contents");
 const container_header = document.querySelector("nav.header");
 const container_buttons = document.querySelector(".buttons-container");
+const button_prev = document.querySelector(".buttons-container .button-prev");
+const button_next = document.querySelector(".buttons-container .button-next");
+const button_all = document.querySelector(".buttons-container .button-all");
 
 // document.getElementById("content3").scrollIntoView({
 //   behavior: "smooth",
@@ -10,24 +13,20 @@ const container_buttons = document.querySelector(".buttons-container");
 // });
 // document.querySelectorAll("[data-title='project1']")[0].scrollIntoView()
 
+/**************** next/previous slide navigation ****************/
+
 // fungsi navigasi scroll kanan kiri
 function scrollNavigation(direction) {
   if (direction === ">") {
     document.querySelector(".contents").scrollLeft +=
       window.innerWidth * (80 / 100);
-
-    console.log("next");
-  }
-
-  if (direction === "<") {
+  } else if (direction === "<") {
     document.querySelector(".contents").scrollLeft -=
       window.innerWidth * (80 / 100);
-
-    console.log("prev");
   }
 }
 
-// keyboard Event Navigasi scroll
+// keyboard event
 document.addEventListener("keyup", (event) => {
   const keyName = event.key;
 
@@ -40,11 +39,15 @@ document.addEventListener("keyup", (event) => {
   }
 });
 
-// fetching content from json
+// button event
+button_prev.addEventListener("click", () => scrollNavigation("<"));
+button_next.addEventListener("click", () => scrollNavigation(">"));
+
+/**************** etching content from json ****************/
 let allContents;
 
 function fillContents() {
-  allContents.forEach((items) => {
+  allContents.forEach(function (items) {
     let templateSingleContents = `<div class="content-wrap" data-title="${items.title.replace(
       /\s+/,
       ""
