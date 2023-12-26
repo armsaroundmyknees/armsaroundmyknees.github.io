@@ -6,19 +6,42 @@ const container_buttons = document.querySelector("div.buttons-container");
 let container_allPagesMenu;
 let container_allPagesMenu_close;
 let container_allPagesMenu_buttom;
+let content_start;
+let content_end;
 const button_prev = document.querySelector(".buttons-container .button-prev");
 const button_next = document.querySelector(".buttons-container .button-next");
 const button_all = document.querySelector(".buttons-container .button-all");
+const button_title = document.querySelector(".buttons-container .button-title");
 
 /**************** next/previous slide navigation ****************/
 // fungsi navigasi scroll kanan kiri
 function scrollNavigation(direction) {
   if (direction === ">") {
-    document.querySelector(".contents").scrollLeft +=
-      window.innerWidth * (80 / 100);
+    // kalau udah ada di halaman terakhir gabisa diklik tombolnya
+    if (
+      localStorage.armsaroundmyknees_portfolio_lastposition.replace(
+        /\s+/,
+        "_"
+      ) === content_end.dataset.title
+    ) {
+      alert("you are at the end section.");
+    } else {
+      document.querySelector(".contents").scrollLeft +=
+        window.innerWidth * (80 / 100);
+    }
   } else if (direction === "<") {
-    document.querySelector(".contents").scrollLeft -=
-      window.innerWidth * (80 / 100);
+    // kalau udah ada di halaman awal gabisa diklik tombolnya
+    if (
+      localStorage.armsaroundmyknees_portfolio_lastposition.replace(
+        /\s+/,
+        "_"
+      ) === content_start.dataset.title
+    ) {
+      alert("you are at the first section.");
+    } else {
+      document.querySelector(".contents").scrollLeft -=
+        window.innerWidth * (80 / 100);
+    }
   }
 }
 // keyboard event
@@ -41,6 +64,7 @@ button_next.addEventListener("click", () => scrollNavigation(">"));
 // init contents variable
 let allContents;
 let allContentsTitle = [];
+let allContentsWrap;
 //   buat fungsi untuk mengisi konten akan dijalankan ketika
 // fetch sudah mendapatkan respon dari json
 function fillContents() {
@@ -50,7 +74,7 @@ function fillContents() {
     // membuat template DOM
     let templateSingleContents = `<div class="content-wrap" data-title="${items.title.replace(
       /\s+/g,
-      "-"
+      "_"
     )}">
                                   <div class="content-A single-content">${
                                     items.sideA
@@ -59,7 +83,7 @@ function fillContents() {
 
     let templateContents = `<div class="content-wrap" data-title="${items.title.replace(
       /\s+/g,
-      "-"
+      "_"
     )}">
                                   <div class="content-A">${
                                     items.sideA
@@ -97,6 +121,16 @@ fetch("contents/portfolio.json")
       allContentsTitle.push(contents.title);
       allContentsTitle = [...new Set(allContentsTitle)];
     });
+
+    // make all contents observable
+    allContentsWrap = document.querySelectorAll("div.content-wrap");
+    allContentsWrap.forEach((contents) => {
+      intersectionObserver.observe(contents);
+    });
+
+    // fill variable first and last content
+    content_start = allContentsWrap[0];
+    content_end = allContentsWrap[allContentsWrap.length - 1];
   });
 
 /**************** event button all/* pada navigasi****************/
@@ -142,9 +176,9 @@ function createAllPagesMenu() {
   // yang berada di all pages menu
   allContentsTitle.forEach((titles) => {
     // template untuk menu judul
-    let templateButtonPages = `<div id="goto-${titles.replace(
+    let templateButtonPages = `<div id="goto_${titles.replace(
       /\s+/g,
-      "-"
+      "_"
     )}">${titles}</div>`;
 
     // sisipkan template
@@ -157,10 +191,10 @@ function createAllPagesMenu() {
     //  jika diclick judulnya page akan menuju
     // sampul halaman judul tsb
     document
-      .getElementById(`goto-${titles.replace(/\s+/g, "-")}`)
+      .getElementById(`goto_${titles.replace(/\s+/g, "_")}`)
       .addEventListener("click", function () {
         // console.log(this);
-        let thisID = `[data-title=${this.id.replace("goto-", "")}]`;
+        let thisID = `[data-title=${this.id.replace("goto_", "")}]`;
         document.querySelectorAll(thisID)[0].scrollIntoView({
           behavior: "smooth",
           block: "start",
@@ -178,3 +212,40 @@ function createAllPagesMenu() {
     deleteAllPagesMenu();
   });
 }
+
+/**************** intersection observer for contents positions****************/
+
+button_title.children[0].innerText =
+  localStorage.armsaroundmyknees_portfolio_lastposition;
+
+let currentSlidePosition;
+
+const observerOptions = {
+  threshold: 0.9,
+};
+const observerCallback = (entries) => {
+  // // If intersectionRatio is 0, the target is out of view
+  // // and we do not need to do anything.
+  // if (entries[0].intersectionRatio <= 0) return;
+
+  // loadItems(10);
+
+  if (entries[0].isIntersecting === true) {
+    console.log(entries[0].target.dataset.title);
+    button_title.children[0].innerText =
+      entries[0].target.dataset.title.replace(/_/gm, " ");
+
+    localStorage.setItem(
+      "armsaroundmyknees_portfolio_lastposition",
+      button_title.children[0].innerText
+    );
+
+    currentSlidePosition = entries[0].target;
+  }
+};
+const intersectionObserver = new IntersectionObserver(
+  observerCallback,
+  observerOptions
+);
+
+/**************** check refresh ****************/

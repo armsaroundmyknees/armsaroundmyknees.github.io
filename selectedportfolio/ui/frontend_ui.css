@@ -31,16 +31,16 @@ body {
 /* layout container */
 .layout-container {
     background-color: white;
-    height: 100vh;
-    width: 100vw;
+    height: 100dvh;
+    width: 100dvw;
 }
 
 /* header container */
 .header {
   background-color: rgba(148, 148, 185, 0);
-  border: 1px solid black;
-  padding: 1vh 2vh;
-  height: 5vh;
+  /* border: 1px solid black; */
+  padding: 1dvh 2dvh;
+  height: 5dvh;
   width: 100%;
   position: fixed;
   top:0;
@@ -50,8 +50,8 @@ body {
 /* content container */
 .contents {
   background-color: var(--no-color);
-  height: 91vh;
-  width: 100vw;
+  height: 91%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   overflow-x: hidden;
@@ -97,13 +97,13 @@ grid-area: contentB;
 .buttons-container {
 background-color: rgba(255, 255, 255, 0.24);
 border: 1px solid var(--border-color);
-height: 9%;
-width: 100vw;
-position: fixed;
+height: 9dvh;
+width: 100dvw;
+position: absolute;
 bottom:0;
 right: 0;
 z-index: 10;
-padding: 1vh 1vh;
+padding: 1dvh 1dvh;
 display: flex;
 flex-direction: row;
 flex-wrap: nowrap;
@@ -139,7 +139,7 @@ justify-content: space-between;
 .allpages-menu-container {
   width: 100dvw;
   height: 100dvh;
-  background-color: #e0e0e0;
+  background-color: rgb(255, 255, 255);
   position: absolute;
   top:0;
   z-index: 998;
@@ -149,9 +149,9 @@ justify-content: space-between;
 
 .allpages-menu-button {
   background-color: rgb(255, 255, 255);
-  border: 1px solid black;
+  /* border: 1px solid black; */
   position: relative;
-  width: 100%;
+  width: 90%;
   height: 100%;
   display: flex;
   align-items: center;
