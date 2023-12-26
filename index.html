@@ -12,14 +12,32 @@
 * Browsers: last 4 version
 */
 
+
+:root {
+    --accent-color: #5aada6;
+  }
+
+
 * {
     overflow: hidden;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap');
+
+::-moz-selection { /* Code for Firefox */
+    color: white;
+    background: var(--accent-color);
+  }
+  
+  ::selection {
+    color: white;
+    background: var(--accent-color);
+  }  
+
 body {
 
     background-color: #e7e4e2;
+    height: 100dvh;
    
     
 }
@@ -36,16 +54,17 @@ div {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    height: 100dvh;
+    height: 40%;
     width: 100dvw;
     padding:2%;
     margin-top: 20vh;
 
 }
 
-div:hover {
-    color:#70908a;;
+pre:hover {
+    color: var(--accent-color)
 }
+
 
 @media screen and (min-width: 768px) {
     div { padding: unset; }
