@@ -1,5 +1,5 @@
 :root {
-    --light-background: white;
+    --light-background: #eeeeed;
     --light-background-text: #1b1b1b;
     --border-color: #8f8f8f33; 
     --accent-color: #5aada6;
@@ -9,8 +9,8 @@
 
   
   ::selection {
-    color: var(--accent-color);
-    background: var(--no-color);
+    background: var(--accent-color);
+    color: var(--light-background);
   }  
 
 * {
@@ -25,19 +25,19 @@
 
 
 body {
-  
+  font-family: 'Anaheim', sans-serif;
 }
 
 /* layout container */
 .layout-container {
-    background-color: white;
+    background-color: var(--light-background);
     height: 100dvh;
     width: 100dvw;
 }
 
 /* header container */
 .header {
-  background-color: rgba(148, 148, 185, 0);
+  background-color: var(--light-background);
   /* border: 1px solid black; */
   padding: 1dvh 2dvh;
   height: 5dvh;
@@ -45,6 +45,8 @@ body {
   position: fixed;
   top:0;
   right:0;
+  display:flex;
+  align-items: center;
 }
 
 /* content container */
@@ -78,25 +80,27 @@ body {
 }
 
 .content-A, .content-B {
-border: 2px solid var(--border-color);
-background-color: aliceblue;
-
+/* border: 2px solid var(--border-color); */
+padding:2vh 2vh;
+overflow: hidden;
 }
 
 .content-A {
 margin-top: 5vh;
 grid-area: contentA;
+background-color: rgba(255, 255, 255, 0.747);
 }
 
 .content-B {
 grid-area: contentB;
+background-color: rgba(255, 255, 255, 0.863);
 }
 
 
 /* button container */
 .buttons-container {
-background-color: rgba(255, 255, 255, 0.24);
-border: 1px solid var(--border-color);
+background-color: var(--no-color);
+/* border: 1px solid var(--border-color); */
 height: 9dvh;
 width: 100dvw;
 position: absolute;
@@ -118,7 +122,7 @@ justify-content: space-between;
   justify-content: center;
   align-items: center;
   transition: all 100ms ease-in-out;
-  border-right: 1px solid black;
+  /* border-right: 1px solid black; */
 }
 
 .buttons-container .button-title {
@@ -127,10 +131,19 @@ justify-content: space-between;
   height: 100%;
 }
 
+.buttons-container .button-title span {
+  width: 100%;
+  text-align: center;
+}
+
 
 .buttons-container > *:hover {
   font-size: 2em;
   cursor: pointer;
+}
+
+.buttons-container .button-title:hover {
+  font-size: 1em;
 }
 
 
@@ -139,7 +152,7 @@ justify-content: space-between;
 .allpages-menu-container {
   width: 100dvw;
   height: 100dvh;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--light-background);
   position: absolute;
   top:0;
   z-index: 998;
@@ -148,7 +161,7 @@ justify-content: space-between;
 
 
 .allpages-menu-button {
-  background-color: rgb(255, 255, 255);
+  background-color: var(--light-background);
   /* border: 1px solid black; */
   position: relative;
   width: 90%;
@@ -187,7 +200,7 @@ justify-content: space-between;
 }
 
 .allpages-close-menu {
-  background-color: red;
+  background-color: var(--accent-color-danger);
   width: 100dvh;
   height: 10dvh;
   position: absolute;
@@ -239,8 +252,8 @@ justify-content: space-between;
     .buttons-container > * {
       width: 100%;
       height: 15%;
-      border-right: unset;
-      border-bottom: 1px solid black;
+      /* border-right: unset;
+      border-bottom: 1px solid black; */
     }
     
     .buttons-container .button-title {
@@ -249,8 +262,15 @@ justify-content: space-between;
     }
     
     .buttons-container .button-title span {
-      transform: rotate(90deg);
+      /* transform: rotate(90deg); */
+      writing-mode: vertical-lr;
+      text-align: center;
+      /* background-color: red; */
+      display:flex;
+      justify-content:center;
+      align-items:center;
     }
+
 
     .allpages-menu-button {
       width: 30%;
