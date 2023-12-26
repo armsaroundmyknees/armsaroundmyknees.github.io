@@ -135,6 +135,10 @@ fetch("contents/portfolio.json")
 
 /**************** event button all/* pada navigasi****************/
 button_all.addEventListener("click", () => {
+  toggleFullScreen();
+});
+
+button_title.addEventListener("click", () => {
   createAllPagesMenu();
 });
 
@@ -249,3 +253,10 @@ const intersectionObserver = new IntersectionObserver(
 );
 
 /**************** check refresh ****************/
+function toggleFullScreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+  } else if (document.exitFullscreen) {
+    document.exitFullscreen();
+  }
+}
