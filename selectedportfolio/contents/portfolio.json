@@ -7,7 +7,7 @@
     {
         "title": "cover",
         "single": true,
-        "sideA": "<em>welcome..</em>"
+        "sideA": "<em>welcome..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</em>"
     },
     {
         "title": "intro",
@@ -16,15 +16,43 @@
         "sideB": "ok :>"
     },
     {
-        "title": "project 1",
+        "title": "project 1 aaaaaaaaaaaaaaaa aaaa aaaa",
         "single": true,
         "sideA": "cover project 1"
     },
     {
-        "title": "project 1",
+        "title": "project 1 aaaaaaaaaaaaaaaa aaaa aaaa",
         "single": false,
-        "sideA": "project",
-        "sideB": "ok :>"
-    }        
+        "sideA": "project 1",
+        "sideB": "ok 1"
+    },
+    {
+        "title": "project 1 aaaaaaaaaaaaaaaa aaaa aaaa",
+        "single": false,
+        "sideA": "project 1.1",
+        "sideB": "ok 1.1"
+    },
+    {
+        "title": "project 2 asaaaaaas asas",
+        "single": true,
+        "sideA": "cover project 2"
+    },
+    {
+        "title": "project 2",
+        "single": false,
+        "sideA": "project 2",
+        "sideB": "ok 2"
+    },
+    {
+        "title": "hehe",
+        "single": true,
+        "sideA": "<em>hehe..</em>"
+    },
+    {
+        "title": "outro",
+        "single": false,
+        "sideA": "bye..",
+        "sideB": "bye :>"
+    }           
     ]
 }
