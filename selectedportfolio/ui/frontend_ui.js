@@ -20,7 +20,7 @@ function scrollNavigation(direction) {
     // kalau udah ada di halaman terakhir gabisa diklik tombolnya
     if (
       localStorage.armsaroundmyknees_portfolio_lastposition.replace(
-        /\s+/,
+        /\s+/g,
         "_"
       ) === content_end.dataset.title
     ) {
@@ -33,7 +33,7 @@ function scrollNavigation(direction) {
     // kalau udah ada di halaman awal gabisa diklik tombolnya
     if (
       localStorage.armsaroundmyknees_portfolio_lastposition.replace(
-        /\s+/,
+        /\s+/g,
         "_"
       ) === content_start.dataset.title
     ) {
@@ -198,12 +198,8 @@ function createAllPagesMenu() {
       .getElementById(`goto_${titles.replace(/\s+/g, "_")}`)
       .addEventListener("click", function () {
         // console.log(this);
-        let thisID = `[data-title=${this.id.replace("goto_", "")}]`;
-        document.querySelectorAll(thisID)[0].scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-          inline: "start",
-        });
+        let thisID = `${this.id.replace("goto_", "")}`;
+        changeSlideTo(thisID);
 
         // jika judul diklik maka allpagesmenu akan dihapus/hilang
         container_allPagesMenu.remove();
@@ -214,6 +210,19 @@ function createAllPagesMenu() {
   // jika tombol close diklik maka allpagesmenu akan dihapus/hilang
   container_allPagesMenu_close.addEventListener("click", () => {
     deleteAllPagesMenu();
+  });
+}
+
+function changeSlideTo(slideTitle, behavior) {
+  let thisID = `[data-title=${slideTitle}]`;
+  if (!behavior) {
+    behavior = "smooth";
+  }
+
+  document.querySelectorAll(thisID)[0].scrollIntoView({
+    behavior: behavior,
+    block: "start",
+    inline: "start",
   });
 }
 
@@ -252,7 +261,7 @@ const intersectionObserver = new IntersectionObserver(
   observerOptions
 );
 
-/**************** check refresh ****************/
+/**************** fullscreen ****************/
 function toggleFullScreen() {
   if (!document.fullscreenElement) {
     document.documentElement.requestFullscreen();
@@ -260,3 +269,31 @@ function toggleFullScreen() {
     document.exitFullscreen();
   }
 }
+
+/**************** fungsi kalau resize kembali ke halaman terakhir ****************/
+// Debounce
+function debounce(func, time) {
+  var time = time || 100; // 100 by default if no param
+  var timer;
+  return function (event) {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(func, time, event);
+  };
+}
+
+// Function with stuff to execute
+function resizeContent() {
+  // Do loads of stuff once window has resized
+
+  let lastPosition =
+    localStorage.armsaroundmyknees_portfolio_lastposition.replace(/\s+/g, "_");
+
+  // console.log(lastPosition);
+  // console.log(currentSlidePositionSelected);
+
+  changeSlideTo(lastPosition, "instant");
+  console.log("resized, goto -> " + lastPosition);
+}
+
+// Eventlistener
+window.addEventListener("resize", debounce(resizeContent, 0));
