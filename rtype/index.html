@@ -5,103 +5,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ransomtype</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Nanum+Gothic+Coding:wght@400;700&family=Pacifico&family=Ultra&display=swap');
+      /*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
 
-        body {
-            font-family: 'Nanum Gothic Coding', monospace;
-        }
+  @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Nanum+Gothic+Coding:wght@400;700&family=Pacifico&family=Ultra&display=swap');
 
-        * {
-        -webkit-box-sizing: border-box;
-                box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        transition: 300ms cubic-bezier(0.19, 1, 0.22, 1) all; }
+body {
+    font-family: 'Nanum Gothic Coding', monospace;
+}
 
-        a, a:link, a:visited {
-            color:black;
-            text-decoration: none;
-        }
-        a:active, a:hover {
-            text-decoration: underline;
-        }
+* {
+-webkit-box-sizing: border-box;
+        box-sizing: border-box;
+margin: 0;
+padding: 0;
+-webkit-transition: 300ms cubic-bezier(0.19, 1, 0.22, 1) all;
+-o-transition: 300ms cubic-bezier(0.19, 1, 0.22, 1) all;
+transition: 300ms cubic-bezier(0.19, 1, 0.22, 1) all; }
 
-        .container {
-            width: 100dvw;
-            height: 100dvh;
-            /* border: 1px solid black; */
-            display: flex;
-            flex-wrap: nowrap;
+a, a:link, a:visited {
+    color:black;
+    text-decoration: none;
+}
+a:active, a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    width: 100dvw;
+    height: 100dvh;
+    /* border: 1px solid black; */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
             flex-direction: column;
-            margin: auto;
-            padding: 10dvh 0;
-            gap: 1dvh;
+    margin: auto;
+    padding: 10dvh 10vw;
+    gap: 1dvh;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
             align-items: center;
-            align-content: center;
+    -ms-flex-line-pack: center;
+        align-content: center;
 
-        }
+}
 
-        .typography {
-            width: 100%;
-            min-height: 50%;
-            display: flex;
-            overflow:hidden;
-            font-size:1em;
+.typography {
+    width: 100%;
+    min-height: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    overflow:hidden;
+    font-size:1em;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
             align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
             justify-content: center;
-            /* border: 1px solid green; */
-            white-space: pre-wrap;
-            text-align: center;
-            /* word-wrap: break-word; */
+    /* border: 1px solid green; */
+    white-space: pre-wrap;
+    text-align: center;
+    /* word-wrap: break-word; */
+    -webkit-box-flex: 1;
+        -ms-flex: 1 0 auto;
             flex: 1 0 auto;
-        }
+}
 
-        .typography div {
-            letter-spacing: .1em;
-            word-spacing: .4em;
-            line-height: 1.9em;
-            /* white-space:pre-wrap; */
-            max-width: 43ch;
-        }
+.typography div {
+    letter-spacing: .1em;
+    word-spacing: .4em;
+    line-height: 1.9em;
+    /* white-space:pre-wrap; */
+    max-width: 43ch;
+}
 
-        .typography div span {
-            
-            display: inline-block;
-        }
+.typography div span {
+    
+    display: inline-block;
+}
 
-        .noFonts {
-            font-size:2em;
-        }
+.noFonts {
+    font-size:2em;
+}
 
-        .type {
-            padding: 10%;
-            width: 70%;
-            min-height: 10%;
-            height: auto;
-            text-align: right;
+.type {
+    padding: 10%;
+    width: 90%;
+    min-height: 10%;
+    height: auto;
+    text-align: right;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 0 auto;
             flex: 1 0 auto;
-            display: flex;
-            flex-wrap: nowrap;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
             flex-direction: column;
-        }
+}
 
 
-        #ransom-it {
-            width: 100%;
-            min-height: 10%;
-            border: 0;
-            resize: none;
-            font-size: 1.3em;
-            padding: 3%;
-            border-bottom: 2px dotted black;
-            /* background-color: green; */
-            margin-bottom: 10px;
-            color:#333;
-        }
+#ransom-it {
+    width: 100%;
+    min-height: 10%;
+    border: 0;
+    resize: none;
+    font-size: 1.3em;
+    padding: 3%;
+    border-bottom: 2px dotted black;
+    /* background-color: green; */
+    margin-bottom: 10px;
+    color:#333;
+    text-align: center;
+}
 
-        #ransom-it:focus {
-            outline:none !important;
-        }
+#ransom-it:focus {
+    outline:none !important;
+}
     </style>
 </head>
 <body>
