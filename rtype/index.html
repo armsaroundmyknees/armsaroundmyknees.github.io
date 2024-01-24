@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ransomtype</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Nanum+Gothic+Coding:wght@400;700&family=Pacifico&family=Ultra&display=swap');
+
+        body {
+            font-family: 'Nanum Gothic Coding', monospace;
+        }
+
+        * {
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        transition: 300ms cubic-bezier(0.19, 1, 0.22, 1) all; }
+
+        a, a:link, a:visited {
+            color:black;
+            text-decoration: none;
+        }
+        a:active, a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 100dvw;
+            height: 100dvh;
+            /* border: 1px solid black; */
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: column;
+            margin: auto;
+            padding: 10dvh 0;
+            gap: 1dvh;
+            align-items: center;
+            align-content: center;
+
+        }
+
+        .typography {
+            width: 100%;
+            min-height: 50%;
+            display: flex;
+            overflow:hidden;
+            font-size:1em;
+            align-items: center;
+            justify-content: center;
+            /* border: 1px solid green; */
+            white-space: pre-wrap;
+            text-align: center;
+            /* word-wrap: break-word; */
+            flex: 1 0 auto;
+        }
+
+        .typography div {
+            letter-spacing: .1em;
+            word-spacing: .4em;
+            line-height: 1.9em;
+            /* white-space:pre-wrap; */
+            max-width: 43ch;
+        }
+
+        .typography div span {
+            
+            display: inline-block;
+        }
+
+        .noFonts {
+            font-size:2em;
+        }
+
+        .type {
+            padding: 10%;
+            width: 70%;
+            min-height: 10%;
+            height: auto;
+            text-align: right;
+            flex: 1 0 auto;
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: column;
+        }
+
+
+        #ransom-it {
+            width: 100%;
+            min-height: 10%;
+            border: 0;
+            resize: none;
+            font-size: 1.3em;
+            padding: 3%;
+            border-bottom: 2px dotted black;
+            /* background-color: green; */
+            margin-bottom: 10px;
+            color:#333;
+        }
+
+        #ransom-it:focus {
+            outline:none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="typography"><p></p></div>
+        <form class="type" autocomplete="off">
+                <textarea placeholder="write something.." id="ransom-it" name="ransom-it" rows="1" maxlength="100"></textarea>
+                <a id="export" href="">[export]</a>
+            </form>
+    </div>
+</body>
+<script type="text/javascript" src="html2canvas.min.js"></script>
+<script>
+    let fontsList = [
+  "Abril Fatface",
+  "Nanum Gothic Coding",
+  "monospace",
+  "sans-serif",
+  "sans-serif",
+  "system-ui",
+  "Pacifico",
+  "monospace",
+  "Ultra",
+  "cursive",
+  "system-ui",
+  "fantasy"
+];
+
+function crazyRandomFont() {
+  let fontWeightList = ["bold", "normal", "normal", "normal", "normal"];
+  let fontStyleList = ["normal", "oblique", "normal", "normal"];
+  let fontSizeList = ["2em", "1.4em", "1.9em", "1.4em"];
+  let fontRotationList = ["-30deg", "0deg", "2deg", "5deg", "-4deg", "10deg", "0", "0", "0", "0", "0", "0"];
+  //
+  randomFonts = Math.floor(Math.random() * (fontsList.length - 1));
+  randomWeight = Math.floor(Math.random() * 3);
+  randomStyle = Math.floor(Math.random() * 4);
+  randomSize = Math.floor(Math.random() * 3);
+
+  //
+  return `font-family:${fontsList[randomFonts]}; font-weight:${fontWeightList[randomWeight]};  font-style:${fontStyleList[randomStyle]}; font-size:${fontSizeList[randomSize]}; transform: rotate(${fontRotationList[randomFonts]});`;
+}
+
+document.getElementById("ransom-it").addEventListener("input", (e) => {
+    if (e.target.value) {
+
+
+        let splitedChar = e.target.value
+      .split("")
+      .map((v) =>
+        Math.round(Math.random()) ? v.toUpperCase() : v.toLowerCase()
+      );
+
+    let charToSpan = splitedChar
+      .map((character) => {
+
+        if (character === "\n") {
+            return `<br/>`
+
+        } else {
+        return `<span style="${crazyRandomFont()}">${character}</span>`;
+        }
+      })
+      .join("");
+
+
+      document.querySelector(".typography").classList.add("noFonts")
+      document.querySelector(".typography").innerHTML = `<div>${charToSpan}</div>`
+
+
+    } else {
+        document.querySelector(".typography").classList.remove("noFonts")
+        document.querySelector(".typography").innerHTML =  `
+feel free to write your thoughts /
+your vents /
+love letter / hate letter /
+your favorite things /
+anything!
+        
+
+
+@armsaroundmyknees`
+    }
+});
+
+
+const tx = document.getElementsByTagName("textarea");
+for (let i = 0; i < tx.length; i++) {
+  tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
+  tx[i].addEventListener("input", OnInput, false);
+}
+
+function OnInput() {
+  this.style.height = 'auto';
+  this.style.height = (this.scrollHeight) + "px";
+}
+
+
+// oninput = (event) => {};
+
+
+document.getElementById("export").addEventListener("click", function(e) {
+    e.preventDefault()
+
+    // console.log(this)
+
+    if (tx[0].value) {
+        
+    html2canvas(document.querySelector(".typography")).then(canvas => {
+
+let a = document.createElement("a"); //Create <a>
+a.href = canvas.toDataURL(); //Image Base64 Goes here
+a.download = `exported_${tx[0].value.slice(0,5)}.png`; //File name Here
+a.click(); //Downloaded file
+
+
+        
+    // console.log(canvas.toDataURL())
+});
+
+} else {
+        alert("you cant export when input is ewmpty")
+    }
+})
+
+</script>
+
+</html>
